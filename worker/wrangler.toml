@@ -1,0 +1,15 @@
+name = "tarot-proxy"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Deploy from terminal (run once):
+#   npx wrangler secret put DEEPSEEK_API_KEY
+#   → paste your DeepSeek API key
+#
+#   npx wrangler secret put AUTH_TOKEN
+#   → paste any random string (same as in js/deepseek-api.js)
+#
+#   npx wrangler deploy
+
+[vars]
+AUTH_TOKEN = "dev-only-change-in-production"

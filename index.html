@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="塔罗牌占卜 - 探索过去、现在与未来的神秘指引">
+<title>🔮 神秘塔罗 · 三牌占卜</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Particles Background -->
+<div class="particles-container" id="particles" aria-hidden="true"></div>
+
+<!-- Draw Effect Overlay -->
+<div class="draw-overlay" id="draw-overlay" aria-hidden="true">
+  <div class="draw-sparkle">✨</div>
+</div>
+
+<!-- Sound Toggle -->
+<button class="sound-toggle" id="sound-toggle" aria-label="音效开关" title="音效开关">
+  🔊
+</button>
+
+<!-- Main Container -->
+<main class="main-container" role="main">
+
+  <!-- Header -->
+  <header>
+    <div class="header-ornament">
+      <span class="ornament-line"></span>
+      <span class="ornament-diamond"></span>
+      <span class="ornament-line"></span>
+    </div>
+    <h1>神 秘 塔 罗</h1>
+    <p class="subtitle">— 过去 · 现在 · 未来 —</p>
+    <div class="header-divider"></div>
+    <div class="mystical-symbols" aria-hidden="true">
+      ☉ ☽ ♃ ♀ ♄ ☿ ⚶
+    </div>
+  </header>
+
+  <!-- Theme Input Section -->
+  <section id="theme-section" aria-labelledby="theme-heading">
+    <h2 class="section-title" id="theme-heading">
+      <span class="sr-only">占卜主题</span>
+      您的疑问
+    </h2>
+    <div class="theme-input-wrapper">
+      <label for="theme-input" class="theme-label">
+        <span class="icon">🌙</span>请写下您想探索的主题<span class="icon">🌙</span>
+      </label>
+      <div class="theme-input-group">
+        <input
+          type="text"
+          id="theme-input"
+          maxlength="100"
+          placeholder="例如：我的事业发展方向、当前的感情状况、未来的学业前程..."
+          aria-describedby="char-count"
+          autocomplete="off"
+        >
+        <button class="btn btn-primary" id="start-btn" aria-label="开始占卜">
+          ✦ 开始占卜
+        </button>
+      </div>
+      <div class="char-count" id="char-count">0 / 100</div>
+    </div>
+  </section>
+
+  <!-- Card Deck Section -->
+  <section id="deck-section" aria-labelledby="deck-heading">
+    <h2 class="section-title" id="deck-heading">抽取塔罗牌</h2>
+    <div class="deck-container" id="deck-container" role="button" tabindex="0"
+         aria-label="点击抽取三张塔罗牌" title="点击抽取您的命运之牌">
+      <div class="deck-stack" id="deck-stack">
+        <div class="deck-card"><div class="card-back">
+          <div class="card-back-corner tl"></div>
+          <div class="card-back-corner tr"></div>
+          <div class="card-back-corner bl"></div>
+          <div class="card-back-corner br"></div>
+          <div class="card-back-inner">
+            <span class="card-back-star">★</span>
+            <span class="card-back-text">TAROT</span>
+          </div>
+        </div></div>
+        <div class="deck-card"><div class="card-back">
+          <div class="card-back-corner tl"></div>
+          <div class="card-back-corner tr"></div>
+          <div class="card-back-corner bl"></div>
+          <div class="card-back-corner br"></div>
+          <div class="card-back-inner">
+            <span class="card-back-star">★</span>
+            <span class="card-back-text">TAROT</span>
+          </div>
+        </div></div>
+        <div class="deck-card"><div class="card-back">
+          <div class="card-back-corner tl"></div>
+          <div class="card-back-corner tr"></div>
+          <div class="card-back-corner bl"></div>
+          <div class="card-back-corner br"></div>
+          <div class="card-back-inner">
+            <span class="card-back-star">★</span>
+            <span class="card-back-text">TAROT</span>
+          </div>
+        </div></div>
+        <div class="deck-card"><div class="card-back">
+          <div class="card-back-corner tl"></div>
+          <div class="card-back-corner tr"></div>
+          <div class="card-back-corner bl"></div>
+          <div class="card-back-corner br"></div>
+          <div class="card-back-inner">
+            <span class="card-back-star">★</span>
+            <span class="card-back-text">TAROT</span>
+          </div>
+        </div></div>
+      </div>
+      <div class="deck-glow"></div>
+    </div>
+    <p class="deck-hint" id="deck-hint">✦ 请先输入主题，再点击牌堆抽取 ✦</p>
+  </section>
+
+  <!-- Result Section -->
+  <section id="result-section" aria-labelledby="result-heading">
+    <h2 class="section-title" id="result-heading">占卜结果</h2>
+    <div class="cards-spread" id="cards-spread">
+      <!-- Past -->
+      <div class="card-slot" id="slot-past">
+        <span class="slot-label past">过 去</span>
+        <div class="drawn-card-container">
+          <div class="drawn-card" data-position="past">
+            <div class="card-face-back card-back">
+              <div class="card-back-corner tl"></div>
+              <div class="card-back-corner tr"></div>
+              <div class="card-back-corner bl"></div>
+              <div class="card-back-corner br"></div>
+              <div class="card-back-inner">
+                <span class="card-back-star">★</span>
+                <span class="card-back-text">TAROT</span>
+              </div>
+            </div>
+            <div class="card-face" id="card-face-past"></div>
+          </div>
+        </div>
+        <p class="card-flip-hint">点击翻开</p>
+      </div>
+      <!-- Present -->
+      <div class="card-slot" id="slot-present">
+        <span class="slot-label present">现 在</span>
+        <div class="drawn-card-container">
+          <div class="drawn-card" data-position="present">
+            <div class="card-face-back card-back">
+              <div class="card-back-corner tl"></div>
+              <div class="card-back-corner tr"></div>
+              <div class="card-back-corner bl"></div>
+              <div class="card-back-corner br"></div>
+              <div class="card-back-inner">
+                <span class="card-back-star">★</span>
+                <span class="card-back-text">TAROT</span>
+              </div>
+            </div>
+            <div class="card-face" id="card-face-present"></div>
+          </div>
+        </div>
+        <p class="card-flip-hint">点击翻开</p>
+      </div>
+      <!-- Future -->
+      <div class="card-slot" id="slot-future">
+        <span class="slot-label future">未 来</span>
+        <div class="drawn-card-container">
+          <div class="drawn-card" data-position="future">
+            <div class="card-face-back card-back">
+              <div class="card-back-corner tl"></div>
+              <div class="card-back-corner tr"></div>
+              <div class="card-back-corner bl"></div>
+              <div class="card-back-corner br"></div>
+              <div class="card-back-inner">
+                <span class="card-back-star">★</span>
+                <span class="card-back-text">TAROT</span>
+              </div>
+            </div>
+            <div class="card-face" id="card-face-future"></div>
+          </div>
+        </div>
+        <p class="card-flip-hint">点击翻开</p>
+      </div>
+    </div>
+
+    <!-- Interpretation Section -->
+    <div id="interpretation-section">
+      <h2 class="section-title">牌面解读</h2>
+      <div class="interpretation-grid" id="interpretation-grid"></div>
+      <div class="overall-reading" id="overall-reading">
+        <h3>✦ 综合解读 ✦</h3>
+        <p id="overall-text"></p>
+      </div>
+    </div>
+
+    <div class="control-bar">
+      <button class="btn btn-primary" id="reset-btn" aria-label="重新占卜">✦ 重新占卜</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align:center;padding:30px 20px;opacity:0.5;font-size:0.8rem;letter-spacing:0.1em;">
+    <p>✦ 命运之轮永不停歇 ✦</p>
+  </footer>
+</main>
+
+<script src="js/sound-engine.js"></script>
+<script src="js/tarot-data.js"></script>
+<script src="js/deepseek-api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
